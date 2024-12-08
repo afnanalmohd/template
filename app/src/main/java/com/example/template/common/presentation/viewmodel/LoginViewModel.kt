@@ -1,9 +1,10 @@
 package com.example.template.common.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.template.common.domain.usecase.LoginUseCase
+import androidx.lifecycle.LiveData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -25,7 +26,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { token -> _loginResponse.postValue(token) },
-                    { throwable -> _error.postValue(throwable.message) }
+                    { throwable -> _error.postValue(throwable.message ?: "خطأ غير معروف") }
                 )
         )
     }

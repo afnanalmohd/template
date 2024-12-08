@@ -26,7 +26,7 @@ class ProfileViewModel(private val getUserProfileUseCase: GetUserProfileUseCase)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { userData -> _userResponse.postValue(userData) },
-                    { throwable -> _error.postValue(throwable.message) }
+                    { throwable -> _error.postValue(throwable.message ?: "خطأ غير معروف") }
                 )
         )
     }

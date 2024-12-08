@@ -10,3 +10,4 @@ class GetUserProfileUseCase(private val userRepository: UserRepository) {
         return userRepository.getUserProfile(userId).map { it.data }
     }
 }
+

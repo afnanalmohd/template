@@ -54,13 +54,16 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-
     // RxJava + RxAndroid
     implementation(libs.rxjava)
     implementation(libs.rxandroid)
+    implementation(libs.adapter.rxjava3)
+
 
     // Koin for dependency injection
     implementation(libs.koin.android)
+    implementation(libs.koin.android.v340)
+    implementation(libs.koin.core)
 
     //Fragments
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -68,10 +71,6 @@ dependencies {
 
     //Coroutines
     implementation(libs.kotlinx.coroutines.android)
-
-    // Lifecycle and ViewModel
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     // LiveData
     implementation(libs.androidx.lifecycle.lifecycle.livedata.ktx)
@@ -84,5 +83,7 @@ dependencies {
     //Navigation Component
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+
 
 }

@@ -13,14 +13,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var binding: FragmentProfileBinding
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
     private val profileViewModel: ProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,15 +35,21 @@ class ProfileFragment : Fragment() {
 
     private fun observeViewModel() {
         profileViewModel.userResponse.observe(viewLifecycleOwner) { userData ->
-            binding.tvName.text = userData.first_name
+            binding.tvName.text = "${userData.first_name} ${userData.last_name}"
             binding.tvEmail.text = userData.email
 //            Glide.with(this)
-//                .load(userData.profileImageUrl)
+//                .load(userData.avatar)
+//                .placeholder(R.drawable.ic_launcher_background)
 //                .into(binding.ivProfileImage)
         }
 
         profileViewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

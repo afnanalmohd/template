@@ -17,3 +17,4 @@ interface ApiService {
     @GET("api/users/{id}")
     fun getUserProfile(@Path("id") userId: String): Single<UserResponse>
 }
+
